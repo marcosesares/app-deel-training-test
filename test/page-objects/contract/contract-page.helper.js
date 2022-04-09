@@ -269,6 +269,44 @@ class ContractPageHelper extends BasePageHelper {
       value
     );
   }
+  async verifyContract(contract) {
+    await this.verifyContractNameLabelValue(contract.contractName);
+    await this.verifyContractorStartDateLabelValue(contract.formatedDate);
+    await this.verifyContractTypeLabelDisplayed();
+    await this.verifyJobTitleLabelValue(contract.jobTitle);
+    await this.verifySeniorityLevelLabelValue(contract.seniorityLevel);
+    await this.verifyRateLabelValue(contract.paymentRateFormated);
+    await this.verifyRateFequencyLabelValue(contract.rateFrequency);
+    await this.verifyScopeLabelValue(contract.scopeOfWork);
+    await this.verifyContractorsCountryLabelValue(contract.contractorCountry);
+    await this.verifySpecialClauseLabelValue(contract.specialClause);
+  }
+
+  async createContract(contract) {
+    await this.setContractName(contract.contractName);
+    await this.clickContractorTaxResidenceButton();
+    await this.clickUnitedStatesItem();
+    await this.clickChooseStateButton();
+    await this.clickColoradoStateItem();
+    await this.setJobTitleInput(contract.jobTitle);
+    await this.clickSeniorityLevelButton();
+    await this.clickNotApplicableItem();
+    await this.setScopeOfWorkTextarea(contract.scopeOfWork);
+    await this.clickContractorStartDateButton();
+    await this.clickCalendarDayButton(contract.day);
+    await this.clickNextButton();
+    await this.clickCurrencyButton();
+    await this.clickBritishPoundItem();
+    await this.setPaymentRateInput(contract.paymentRate);
+    await this.clickPaymentFrequencyButton();
+    await this.clickWeeklyItem();
+    await this.clickNextButton();
+    await this.clickNextButton();
+    await this.clickAddSpecialClauseButton();
+    await this.setSpecialClauseTextarea(contract.specialClause);
+    await this.clickNextButton();
+    await this.clickCreateContractButton();
+  }
 }
 
 export default new ContractPageHelper();

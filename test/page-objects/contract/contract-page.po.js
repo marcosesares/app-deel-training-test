@@ -147,13 +147,6 @@ class ContractPage extends BasePagePo {
   }
 
   getCalendarDayBeforeToday(day) {
-    console.log(
-      "################################################################"
-    );
-    console.log(ContractPageConstants.getCalendarDayBeforeToday(day));
-    console.log(
-      "################################################################"
-    );
     return $(ContractPageConstants.getCalendarDayBeforeToday(day));
   }
 }

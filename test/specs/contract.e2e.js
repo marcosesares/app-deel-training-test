@@ -7,6 +7,22 @@ import contractPageHelper from "./../page-objects/contract/contract-page.helper"
 import ContractPageHelper from "./../page-objects/contract/contract-page.helper";
 import NumberHelper from "./../../core/helper/Number.helper";
 
+const contract = {
+  contractName: "Test Contract",
+  jobTitle: "Test Job Title",
+  scopeOfWork: "Test scope of work",
+  day: DateHelper.getDate(CoreConstants.NUMBER_MINUS_ONE),
+  formatedDate: DateHelper.getFormatedDate(CoreConstants.NUMBER_MINUS_ONE),
+  paymentRate: CoreConstants.NUMBER_THOUSAND,
+  specialClause: "Test special clause",
+  paymentRateFormated: NumberHelper.getFormatedMoney(
+    CoreConstants.NUMBER_THOUSAND
+  ),
+  rateFrequency: "Weekly",
+  contractorCountry: "Colorado (United States)",
+  seniorityLevel: "Not applicable",
+};
+
 describe("Create Contracts on Deel training application", () => {
   context("Contract", async () => {
     beforeEach("should login with valid credentials", async () => {
@@ -49,60 +65,11 @@ describe("Create Contracts on Deel training application", () => {
 
       StepLogger.stepId(3);
       StepLogger.step("Create a fixed contract");
-      let contractName = "Test Contract";
-      let jobTitle = "Test Job Title";
-      let scopeOfWork = "Test scope of work";
-      const day = DateHelper.getDate(CoreConstants.NUMBER_MINUS_ONE);
-      const formatedDate = DateHelper.getFormatedDate(
-        CoreConstants.NUMBER_MINUS_ONE
-      );
-      let paymentRate = CoreConstants.NUMBER_THOUSAND;
-      let specialClause = "Test special clause";
-      let paymentRateFormated = NumberHelper.getFormatedMoney(paymentRate);
-      let rateFrequency = "Weekly";
-      let contractorCountry = "Colorado (United States)";
-      let seniorityLevel = "Not applicable";
-
-      await ContractPageHelper.setContractName(contractName);
-      await ContractPageHelper.clickContractorTaxResidenceButton();
-      await ContractPageHelper.clickUnitedStatesItem();
-      await ContractPageHelper.clickChooseStateButton();
-      await ContractPageHelper.clickColoradoStateItem();
-      await ContractPageHelper.setJobTitleInput(jobTitle);
-      await ContractPageHelper.clickSeniorityLevelButton();
-      await ContractPageHelper.clickNotApplicableItem();
-      await ContractPageHelper.setScopeOfWorkTextarea(scopeOfWork);
-      await ContractPageHelper.clickContractorStartDateButton();
-      await ContractPageHelper.clickCalendarDayButton(day);
-      await ContractPageHelper.clickNextButton();
-      await ContractPageHelper.clickCurrencyButton();
-      await ContractPageHelper.clickBritishPoundItem();
-      await ContractPageHelper.setPaymentRateInput(paymentRate);
-      await ContractPageHelper.clickPaymentFrequencyButton();
-      await ContractPageHelper.clickWeeklyItem();
-      await ContractPageHelper.clickNextButton();
-      await ContractPageHelper.clickNextButton();
-      await ContractPageHelper.clickAddSpecialClauseButton();
-      await ContractPageHelper.setSpecialClauseTextarea(specialClause);
-      await ContractPageHelper.clickNextButton();
-      await ContractPageHelper.clickCreateContractButton();
+      await ContractPageHelper.createContract(contract);
       StepLogger.verification(
         "Verify Creating a fixed contract page is displayed"
       );
-      await ContractPageHelper.verifyContractNameLabelValue(contractName);
-      await ContractPageHelper.verifyContractorStartDateLabelValue(
-        formatedDate
-      );
-      await ContractPageHelper.verifyContractTypeLabelDisplayed();
-      await ContractPageHelper.verifyJobTitleLabelValue(jobTitle);
-      await ContractPageHelper.verifySeniorityLevelLabelValue(seniorityLevel);
-      await ContractPageHelper.verifyRateLabelValue(paymentRateFormated);
-      await ContractPageHelper.verifyRateFequencyLabelValue(rateFrequency);
-      await ContractPageHelper.verifyScopeLabelValue(scopeOfWork);
-      await ContractPageHelper.verifyContractorsCountryLabelValue(
-        contractorCountry
-      );
-      await ContractPageHelper.verifySpecialClauseLabelValue(specialClause);
+      await ContractPageHelper.verifyContract(contract);
     });
   });
 });
