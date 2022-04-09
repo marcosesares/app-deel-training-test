@@ -1,11 +1,24 @@
-const winston = require("winston");
-const { createLogger, format, transports } = require("winston");
-const { splat, combine, timestamp, label, printf, simple } = format;
+import winston from "winston";
 
-const logger = winston.createLogger({
-  level: "info",
-  format: combine(simple()),
-  transports: [new transports.Console()],
+const consoleFormat = winston.format.printf(({ level, message }) => {
+  const logLevel = winston.format
+    .colorize()
+    .colorize(level, `${level.toUpperCase()}`);
+  return `[${logLevel}]: ${message}`;
 });
 
+let logger = winston.createLogger({
+  transports: [
+    new winston.transports.Console({
+      level: process.env.LOG_LEVEL,
+      handleExceptions: true,
+      format: winston.format.combine(winston.format.timestamp(), consoleFormat),
+    }),
+  ],
+});
+
+logger.on("error", (error) => {
+  console.log("Unknown error in Winston logger");
+  console.log(error.message);
+});
 export default logger;

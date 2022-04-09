@@ -17,13 +17,12 @@ export class WaitHelper {
     timeout = DEFAULT_TIMEOUT,
     message = "Element should be displayed"
   ) {
-    VerboseLogger.logSelector(timeout, "be displayed");
-    return await browser
-      .waitUntil(targetElement.isDisplayed(), { timeout, message })
-      .then(
-        () => true,
-        (error) => this.assertionHandler(error)
-      );
+    try {
+      await targetElement.waitForDisplayed({ timeout, message });
+    } catch (error) {
+      VerboseLogger.logSelector(timeout, message);
+      throw error;
+    }
   }
 
   static async waitForElementToBeClickable(
@@ -31,27 +30,26 @@ export class WaitHelper {
     timeout = DEFAULT_TIMEOUT,
     message = "Element not clickable"
   ) {
-    VerboseLogger.logSelector(timeout, "be clickable");
-    await browser
-      .waitUntil(targetElement.isClickable(), { timeout, message })
-      .then(
-        () => true,
-        (error) => this.assertionHandler(error)
-      );
+    try {
+      await targetElement.waitForClickable({ timeout, message });
+    } catch (error) {
+      VerboseLogger.logSelector(timeout, message);
+      throw error;
+    }
   }
 
   static async waitForElementOptionallyPresent(
     targetElement,
-    timeout = DEFAULT_TIMEOUT
+    timeout = DEFAULT_TIMEOUT,
+    message = "Element should be displayed"
   ) {
-    return browser.waitUntil(targetElement.isDisplayed(), timeout).then(
-      function () {
-        return true;
-      },
-      function () {
-        return false;
-      }
-    );
+    try {
+      await targetElement.waitForDisplayed({ timeout, message });
+    } catch (error) {
+      VerboseLogger.logSelector(timeout, message);
+      return false;
+    }
+    return true;
   }
 
   static assertionHandler(error) {

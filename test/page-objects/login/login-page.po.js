@@ -10,16 +10,16 @@ class LoginPage extends BasePage {
     super();
   }
 
-  get inputUserEmail() {
-    return $(selectors.email);
+  get userEmailInput() {
+    return $(selectors.emailInput);
   }
 
-  get inputPassword() {
-    return $(selectors.password);
+  get passwordInput() {
+    return $(selectors.passwordInput);
   }
 
-  get btnLogin() {
-    return $(selectors.logIn);
+  get loginButton() {
+    return $(selectors.loginButton);
   }
 }
 

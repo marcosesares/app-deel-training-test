@@ -6,7 +6,7 @@ import { ElementHelper } from "../../../core/helper/element-helper";
 import HomePageConstants from "./home-page.constants";
 import { CoreConstants } from "../../../core/core-constants";
 
-const { TIMEOUTS } = CoreConstants;
+const { TIMEOUTS, DEFAULT_TIMEOUT } = CoreConstants;
 const {
   attributes: { labels },
 } = HomePageConstants;
@@ -18,25 +18,51 @@ class HomePageHelper extends BasePageHelper {
 
   async verifyUserTagName(userName) {
     await ElementHelper.verifyElementTextEqualTo(
-      HomePage.labelUserTagName,
+      HomePage.userTagNameLabel,
       labels.userTagName,
       userName
     );
   }
 
-  async acceptAllCookies() {
-    StepLogger.subStep("Click the Accept All Cookies button");
+  async verifySideMenuDisplayed(userName) {
+    await ElementHelper.verifyElementDisplayedStatus(
+      HomePage.mobileHeaderButton,
+      labels.sideBurguerMenu
+    );
+  }
+
+  async openSideMenu() {
     await ElementHelper.actionClickIfDisplayed(
-      HomePage.buttonAcceptAllCookies,
+      HomePage.mobileHeaderButton,
+      labels.sideBurguerMenu,
+      DEFAULT_TIMEOUT
+    );
+  }
+
+  async acceptAllCookies() {
+    await ElementHelper.actionClickIfDisplayed(
+      HomePage.acceptAllCookiesButton,
+      labels.acceptCookiesButton,
       TIMEOUTS.s
     );
   }
 
   async clickModalNextButton() {
-    StepLogger.subStep("Click the Next button under What's new modal dialog");
-    await ElementHelper.actionClickUntilDisplayed(
-      HomePage.buttonModalNext,
-      TIMEOUTS.l
+    await ElementHelper.actionClick(
+      HomePage.modalNextButton,
+      labels.nextButton
+    );
+    await ElementHelper.actionClick(
+      HomePage.modalNextButton,
+      labels.nextButton
+    );
+    await ElementHelper.actionClick(
+      HomePage.modalNextButton,
+      labels.nextButton
+    );
+    await ElementHelper.actionClick(
+      HomePage.modalDoneButton,
+      labels.doneButton
     );
   }
 }

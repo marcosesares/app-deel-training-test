@@ -10,20 +10,24 @@ class HomePage extends BasePagePo {
     super();
   }
 
-  get labelUserTagName() {
-    return $(selectors.userTagName);
+  get mobileHeaderButton() {
+    return $(selectors.mobileHeaderButton);
   }
 
-  get labelUserTagName() {
-    return $(selectors.userTagName);
+  get userTagNameLabel() {
+    return $(selectors.userTagNameLabel);
   }
 
-  get buttonAcceptAllCookies() {
-    return $(selectors.acceptCookies);
+  get acceptAllCookiesButton() {
+    return $(selectors.acceptCookiesButton);
   }
 
-  get buttonModalNext() {
-    return $(selectors.next);
+  get modalNextButton() {
+    return $(selectors.nextButton);
+  }
+
+  get modalDoneButton() {
+    return $(selectors.doneButton);
   }
 }
 

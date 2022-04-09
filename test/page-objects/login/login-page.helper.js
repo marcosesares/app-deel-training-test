@@ -2,8 +2,12 @@ import { StepLogger } from "../../../core/config/logger/step-logger";
 import BasePageHelper from "../base-page.helper";
 import LoginPage from "./login-page.po";
 import { ElementHelper } from "../../../core/helper/element-helper";
-import { WaitHelper } from "../../../core/helper/wait-helper";
 import HomePageHelper from "../home/home-page.helper";
+import LoginPageConstants from "./login-page.constants";
+
+const {
+  attributes: { labels },
+} = LoginPageConstants;
 
 class LoginPageHelper extends BasePageHelper {
   constructor() {
@@ -11,18 +15,50 @@ class LoginPageHelper extends BasePageHelper {
   }
 
   async clickTheLoginButton() {
-    StepLogger.subStep("Click the Log in button");
-    await ElementHelper.actionClick(LoginPage.btnLogin);
+    await ElementHelper.actionClick(LoginPage.loginButton, labels.loginButton);
   }
 
   async setTheUserPassword(userPassword) {
-    StepLogger.subStep("Type user password");
-    await ElementHelper.setValue(LoginPage.inputPassword, userPassword);
+    await ElementHelper.setValue(
+      LoginPage.passwordInput,
+      labels.passwordInput,
+      userPassword
+    );
   }
 
   async setTheUserEmail(userEmail) {
-    StepLogger.subStep(`Type user email: ${userEmail}`);
-    await LoginPage.inputUserEmail.setValue(userEmail);
+    await ElementHelper.setValue(
+      LoginPage.userEmailInput,
+      labels.emailInput,
+      userEmail
+    );
+  }
+
+  async verifyUserEmailInputDisplayed() {
+    await ElementHelper.verifyElementDisplayedStatus(
+      LoginPage.userEmailInput,
+      labels.emailInput
+    );
+  }
+
+  async verifyUserPasswordInputDisplayed() {
+    await ElementHelper.verifyElementDisplayedStatus(
+      LoginPage.passwordInput,
+      labels.passwordInput
+    );
+  }
+
+  async verifyLoginButtonDisplayed() {
+    await ElementHelper.verifyElementDisplayedStatus(
+      LoginPage.loginButton,
+      labels.loginButton
+    );
+  }
+
+  async verifyLoginPage() {
+    await this.verifyUserEmailInputDisplayed();
+    await this.verifyUserPasswordInputDisplayed();
+    await this.verifyLoginButtonDisplayed();
   }
 
   async login(userEmail, userPassword) {
@@ -30,12 +66,11 @@ class LoginPageHelper extends BasePageHelper {
     await this.setTheUserPassword(userPassword);
     await this.clickTheLoginButton();
     await HomePageHelper.acceptAllCookies();
-    await WaitHelper.pause();
     await HomePageHelper.clickModalNextButton();
   }
 
-  open() {
-    return super.open("login");
+  async open() {
+    return await super.open("login");
   }
 }
 

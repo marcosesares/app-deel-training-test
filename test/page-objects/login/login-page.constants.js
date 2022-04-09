@@ -1,9 +1,15 @@
 export default class LoginPageConstants {
   static attributes = {
     selectors: {
-      email: "input[placeholder='Type your email']",
-      password: "input[name='password']",
-      logIn: "//button[@type='submit' and div[contains(text(),'log in')]]",
+      emailInput: "input[placeholder='Type your email']",
+      passwordInput: "input[name='password']",
+      loginButton:
+        "//button[@type='submit' and div[contains(text(),'log in')]]",
+    },
+    labels: {
+      emailInput: "Email Textbox",
+      passwordInput: "Password Textbox",
+      loginButton: "Log in button",
     },
   };
 }

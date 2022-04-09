@@ -17,4 +17,7 @@ export class CoreConstants {
   static INITIAL_DATE = "1970-01-01T00:00:00.000Z";
   static END_DATE = "2022-01-01T00:00:00.000Z";
   static PASSWORD_REGEX = "aZ?#@*****###";
+  static NUMBER_ONE = 1;
+  static NUMBER_MINUS_ONE = -1;
+  static NUMBER_THOUSAND = 1000;
 }

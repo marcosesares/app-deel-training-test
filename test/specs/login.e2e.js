@@ -16,6 +16,10 @@ describe("Login on Deel training application", () => {
         browser.config.userEmail,
         browser.config.userPassword
       );
+      StepLogger.stepId(2);
+      StepLogger.step("Click the Mobile header button");
+      await HomePageHelper.openSideMenu();
+
       StepLogger.verification("Verify User is logged in successfully");
       await HomePageHelper.verifyUserTagName(browser.config.userName);
     });
