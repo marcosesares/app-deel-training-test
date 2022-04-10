@@ -7,16 +7,13 @@ export class CoreConstants {
     m: 10000,
     l: 25000,
     xl: 50000,
-    xxl: 75000,
+    xxl: 100000,
     xxxl: 200000,
     xxxxl: 300000,
     xxxxxl: 400000,
     tenMinutes: 600000,
   };
-  static DEFAULT_TIMEOUT = CoreConstants.TIMEOUTS.xl;
-  static INITIAL_DATE = "1970-01-01T00:00:00.000Z";
-  static END_DATE = "2022-01-01T00:00:00.000Z";
-  static PASSWORD_REGEX = "aZ?#@*****###";
+  static DEFAULT_TIMEOUT = CoreConstants.TIMEOUTS.xxl;
   static NUMBER_ONE = 1;
   static NUMBER_MINUS_ONE = -1;
   static NUMBER_THOUSAND = 1000;
