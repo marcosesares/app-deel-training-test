@@ -4,8 +4,11 @@ export default class ContractPageConstants {
       createContractLink: "//p[normalize-space()='Create A Contract']",
       contractTypePageTitle: "//h1[normalize-space()='Contract Type']",
       fixedRateButton: "//h4[normalize-space()='Fixed Rate']",
+      payAsYouGoButton: "//h4[normalize-space()='Pay As You Go']",
       creatingFixedContractPageTitle:
         "//h2[normalize-space()='Creating a fixed contract']",
+      creatingPayAsYouGoContractPageTitle:
+        "//h2[normalize-space()='Creating a pay as you go contract']",
       contractorStartDateButton:
         "//div[contains(@class,'input_dropdown-icon')]//i",
       contractNameInput: "input[name='name']",
@@ -38,7 +41,7 @@ export default class ContractPageConstants {
       createContractButton: "//button[@data-qa='create-contract']",
       contractNameLabel: "//div[@class='editable-text']//h1",
       contractorStartDateLabel: "//div[@data-qa='contractors-start-date']//div",
-      contractTypeLabel: "//h4[normalize-space()='Fixed rate']",
+      contractTypeLabel: "//div[@data-qa='contract-type']/h4",
       jobTitleLabel: "//div[@data-qa='job-title']/h4",
       seniorityLevelLabel: "//div[@data-qa='seniority-level']/h4",
       rateLabel: "//div[@data-qa='rate']/h4",
@@ -54,7 +57,9 @@ export default class ContractPageConstants {
       createContractLink: "Create A Contract link",
       contractTypePageTitle: "Contract Type",
       fixedRateButton: "Fixed Rate Button",
+      payAsYouGoButton: "Pay As You Go",
       creatingFixedContractPageTitle: "Creating a fixed contract",
+      creatingPayAsYouGoContractPageTitle: "Creating a pay as you go contract",
       contractorStartDateButton: "Contractor's start date button",
       contractNameInput: "Contract name textbox",
       contractorTaxResidenceButton: "Contractor's tax residence button",
@@ -76,7 +81,7 @@ export default class ContractPageConstants {
       createContractButton: "Create Contract",
       contractNameLabel: "Contract Name label",
       contractorStartDateLabel: "Contractor's start date label",
-      contractTypeLabel: "Contrac Type label",
+      contractTypeLabel: "Contract Type label",
       jobTitleLabel: "Job title label",
       seniorityLevelLabel: "Seniority level label",
       rateLabel: "Payment rate label",
@@ -85,6 +90,10 @@ export default class ContractPageConstants {
       contractorsCountryLabel: "Contractor's Country label",
       specialClauseLabel: "Special clause label",
       reviewContractDetailsLabel: "Review the contract details label",
+      contractorCountry: "Colorado (United States)",
+      seniorityLevel: "Not applicable",
+      fixedRateContractType: "Fixed rate",
+      payAsYouGoContractType: "Pay as you go",
     },
   };
 

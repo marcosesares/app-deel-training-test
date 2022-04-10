@@ -5,6 +5,7 @@ import { ElementHelper } from "../../../core/helper/element-helper";
 import { CoreConstants } from "../../../core/core-constants";
 import ContractPageConstants from "./contract-page.constants";
 import { DateHelper } from "./../../../core/helper/date.helper";
+import { Contract } from "../models/contract.model";
 
 const { TIMEOUTS, DEFAULT_TIMEOUT } = CoreConstants;
 const {
@@ -34,6 +35,13 @@ class ContractPageHelper extends BasePageHelper {
     await ElementHelper.actionClick(
       ContractPage.fixedRateButton,
       labels.fixedRateButton
+    );
+  }
+
+  async clickPayAsYouGoButton() {
+    await ElementHelper.actionClick(
+      ContractPage.payAsYouGoButton,
+      labels.payAsYouGoButton
     );
   }
 
@@ -199,6 +207,13 @@ class ContractPageHelper extends BasePageHelper {
     );
   }
 
+  async verifyCreatingPayAsYouGoContractPageTitleDisplayed() {
+    await ElementHelper.verifyElementDisplayedStatus(
+      ContractPage.creatingPayAsYouGoContractPageTitle,
+      labels.creatingPayAsYouGoContractPageTitle
+    );
+  }
+
   async verifyContractorStartDateLabelValue(date) {
     await ElementHelper.verifyElementTextEqualTo(
       ContractPage.contractorStartDateLabel,
@@ -207,10 +222,11 @@ class ContractPageHelper extends BasePageHelper {
     );
   }
 
-  async verifyContractTypeLabelDisplayed() {
-    await ElementHelper.verifyElementDisplayedStatus(
+  async verifyContractTypeLabelValue(value) {
+    await ElementHelper.verifyElementTextEqualTo(
       ContractPage.contractTypeLabel,
-      labels.contractTypeLabel
+      labels.contractTypeLabel,
+      value
     );
   }
 
@@ -269,10 +285,10 @@ class ContractPageHelper extends BasePageHelper {
       value
     );
   }
+
   async verifyContract(contract) {
     await this.verifyContractNameLabelValue(contract.contractName);
     await this.verifyContractorStartDateLabelValue(contract.formatedDate);
-    await this.verifyContractTypeLabelDisplayed();
     await this.verifyJobTitleLabelValue(contract.jobTitle);
     await this.verifySeniorityLevelLabelValue(contract.seniorityLevel);
     await this.verifyRateLabelValue(contract.paymentRateFormated);
@@ -280,6 +296,20 @@ class ContractPageHelper extends BasePageHelper {
     await this.verifyScopeLabelValue(contract.scopeOfWork);
     await this.verifyContractorsCountryLabelValue(contract.contractorCountry);
     await this.verifySpecialClauseLabelValue(contract.specialClause);
+  }
+
+  async verifyFixedRateContract(contract) {
+    await this.verifyContractTypeLabelValue(labels.fixedRateContractType);
+    await this.verifyContract(contract);
+  }
+
+  async verifyPayAsYouGoContract(contract) {
+    await this.verifyContractTypeLabelValue(labels.payAsYouGoContractType);
+    await this.verifyContract(contract);
+  }
+
+  getContract() {
+    return Contract.getContract();
   }
 
   async createContract(contract) {

@@ -22,8 +22,16 @@ class ContractPage extends BasePagePo {
     return $(selectors.fixedRateButton);
   }
 
+  get payAsYouGoButton() {
+    return $(selectors.payAsYouGoButton);
+  }
+
   get creatingFixedContractPageTitle() {
     return $(selectors.creatingFixedContractPageTitle);
+  }
+
+  get creatingPayAsYouGoContractPageTitle() {
+    return $(selectors.creatingPayAsYouGoContractPageTitle);
   }
 
   get contractorStartDateButton() {

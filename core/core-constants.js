@@ -20,4 +20,5 @@ export class CoreConstants {
   static NUMBER_ONE = 1;
   static NUMBER_MINUS_ONE = -1;
   static NUMBER_THOUSAND = 1000;
+  static RATE_FREQUENCY = "Weekly";
 }

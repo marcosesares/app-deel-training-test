@@ -1,6 +1,6 @@
-import { StepLogger } from "../../core/config/logger/step-logger";
-import HomePageHelper from "../page-objects/home/home-page.helper";
-import LoginPageHelper from "../page-objects/login/login-page.helper";
+import { StepLogger } from "../../../core/config/logger/step-logger";
+import HomePageHelper from "../../page-objects/home/home-page.helper";
+import LoginPageHelper from "../../page-objects/login/login-page.helper";
 
 describe("Login on Deel training application", () => {
   context("Login", async () => {

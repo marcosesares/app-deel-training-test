@@ -8,7 +8,6 @@ export default class DateHelper {
   static getNthDay(day) {
     const dayString = String(day);
     const last = +dayString.slice(-2);
-    console.log(last);
     if (last > 3 && last < 21) return "th";
     switch (last % 10) {
       case 1:
