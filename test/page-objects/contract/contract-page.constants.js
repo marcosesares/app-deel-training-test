@@ -52,6 +52,14 @@ export default class ContractPageConstants {
         "//div[@data-qa='dpa-row-special-clause-value']/div[@class='pre-wrap']",
       reviewContractDetailsLabel:
         "//h4[@class='subtitle'][text()='Review the contract details']",
+      paymentDetailsIcon:
+        "//div[contains(@class,'deel-ui__stack_align-center')][h6[normalize-space()='Payment Details']]//i",
+      defineDatesIcon:
+        "//div[contains(@class,'deel-ui__stack_align-center')][h6[normalize-space()='Define Dates']]//i",
+      benefitsAndExtrasIcon:
+        "//div[contains(@class,'deel-ui__stack_align-center')][h6[normalize-space()='Benefits and Extras']]//i",
+      complianceIcon:
+        "//div[contains(@class,'deel-ui__stack_align-center')][h6[normalize-space()='Compliance']]//i",
     },
     labels: {
       createContractLink: "Create A Contract link",
@@ -94,6 +102,10 @@ export default class ContractPageConstants {
       seniorityLevel: "Not applicable",
       fixedRateContractType: "Fixed rate",
       payAsYouGoContractType: "Pay as you go",
+      paymentDetailsIcon: "Payment Details icon",
+      defineDatesIcon: "Define Dates icon",
+      benefitsAndExtrasIcon: "Benefits and Extras icon",
+      complianceIcon: "Compliance icon",
     },
   };
 

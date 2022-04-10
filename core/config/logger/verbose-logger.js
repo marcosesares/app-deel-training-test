@@ -1,4 +1,4 @@
-const isVerboseLoggingEnabled = !process.env.softAssertions;
+const isVerboseLoggingEnabled = !process.env.SOFT_ASSERTIONS;
 
 export class VerboseLogger {
   static log(message) {

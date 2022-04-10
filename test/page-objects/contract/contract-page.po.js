@@ -154,6 +154,22 @@ class ContractPage extends BasePagePo {
     return $(selectors.reviewContractDetailsLabel);
   }
 
+  get paymentDetailsIcon() {
+    return $(selectors.paymentDetailsIcon);
+  }
+
+  get defineDatesIcon() {
+    return $(selectors.defineDatesIcon);
+  }
+
+  get benefitsAndExtrasIcon() {
+    return $(selectors.benefitsAndExtrasIcon);
+  }
+
+  get complianceIcon() {
+    return $(selectors.complianceIcon);
+  }
+
   getCalendarDayBeforeToday(day) {
     return $(ContractPageConstants.getCalendarDayBeforeToday(day));
   }

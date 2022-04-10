@@ -53,7 +53,7 @@ export class WaitHelper {
   }
 
   static assertionHandler(error) {
-    if (process.env.softAssertions) {
+    if (process.env.SOFT_ASSERTIONS) {
       return false;
     } else {
       throw error;

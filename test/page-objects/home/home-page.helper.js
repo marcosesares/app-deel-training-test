@@ -24,10 +24,10 @@ class HomePageHelper extends BasePageHelper {
     );
   }
 
-  async verifySideMenuDisplayed(userName) {
+  async verifyUserGreetingsDisplayedStatus(userName) {
     await ElementHelper.verifyElementDisplayedStatus(
-      HomePage.mobileHeaderButton,
-      labels.sideBurguerMenu
+      HomePage.userGreetings,
+      labels.userGreetings
     );
   }
 

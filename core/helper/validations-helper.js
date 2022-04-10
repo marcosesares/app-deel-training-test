@@ -20,6 +20,14 @@ export class ValidationsHelper {
     return `${this.types.field} ${fieldLabel} text should contain ${value}`;
   }
 
+  static getFieldFieldAttributeEqualsToValidation(
+    attribute,
+    fieldLabel,
+    value
+  ) {
+    return `${this.types.field} ${fieldLabel} should have attribute ${attribute} equals to ${value}`;
+  }
+
   static getFieldTextEqualsToValidation(fieldLabel, value) {
     return `${this.types.field} ${fieldLabel} should have text equals to ${value}`;
   }

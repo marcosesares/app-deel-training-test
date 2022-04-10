@@ -6,6 +6,7 @@ import { CoreConstants } from "../../../core/core-constants";
 import ContractPageConstants from "./contract-page.constants";
 import { DateHelper } from "./../../../core/helper/date.helper";
 import { Contract } from "../models/contract.model";
+import { HtmlHelper } from "../../../core/helper/html.helper";
 
 const { TIMEOUTS, DEFAULT_TIMEOUT } = CoreConstants;
 const {
@@ -286,6 +287,42 @@ class ContractPageHelper extends BasePageHelper {
     );
   }
 
+  async verifyPaymentDetailsIconColor(value) {
+    await ElementHelper.verifyElementAttributeValue(
+      ContractPage.paymentDetailsIcon,
+      labels.paymentDetailsIcon,
+      HtmlHelper.attributes.color,
+      value
+    );
+  }
+
+  async verifyDefineDatesIconColor(value) {
+    await ElementHelper.verifyElementAttributeValue(
+      ContractPage.defineDatesIcon,
+      labels.defineDatesIcon,
+      HtmlHelper.attributes.color,
+      value
+    );
+  }
+
+  async verifyBenefitsAndExtrasIconColor(value) {
+    await ElementHelper.verifyElementAttributeValue(
+      ContractPage.benefitsAndExtrasIcon,
+      labels.benefitsAndExtrasIcon,
+      HtmlHelper.attributes.color,
+      value
+    );
+  }
+
+  async verifyComplianceIconColor(value) {
+    await ElementHelper.verifyElementAttributeValue(
+      ContractPage.complianceIcon,
+      labels.complianceIcon,
+      HtmlHelper.attributes.color,
+      value
+    );
+  }
+
   async verifyContract(contract) {
     await this.verifyContractNameLabelValue(contract.contractName);
     await this.verifyContractorStartDateLabelValue(contract.formatedDate);
@@ -308,11 +345,7 @@ class ContractPageHelper extends BasePageHelper {
     await this.verifyContract(contract);
   }
 
-  getContract() {
-    return Contract.getContract();
-  }
-
-  async createContract(contract) {
+  async fillContractGeneralInfoForm(contract) {
     await this.setContractName(contract.contractName);
     await this.clickContractorTaxResidenceButton();
     await this.clickUnitedStatesItem();
@@ -325,16 +358,28 @@ class ContractPageHelper extends BasePageHelper {
     await this.clickContractorStartDateButton();
     await this.clickCalendarDayButton(contract.day);
     await this.clickNextButton();
+  }
+
+  async fillPaymentDetailsForm(contract) {
     await this.clickCurrencyButton();
     await this.clickBritishPoundItem();
     await this.setPaymentRateInput(contract.paymentRate);
     await this.clickPaymentFrequencyButton();
     await this.clickWeeklyItem();
     await this.clickNextButton();
+  }
+
+  async fillDefineDatesForm(contract) {
     await this.clickNextButton();
+  }
+
+  async fillBenefitsAndExtrasForm(contract) {
     await this.clickAddSpecialClauseButton();
     await this.setSpecialClauseTextarea(contract.specialClause);
     await this.clickNextButton();
+  }
+
+  async fillComplianceForm(contract) {
     await this.clickCreateContractButton();
   }
 }

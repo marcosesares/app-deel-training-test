@@ -31,6 +31,20 @@ export class ElementHelper {
     );
   }
 
+  static async verifyElementAttributeValue(
+    targetElement,
+    elementName,
+    elementAttribute,
+    expectedValue
+  ) {
+    await ExpectationHelper.verifyElementAttributeValue(
+      targetElement,
+      elementName,
+      elementAttribute,
+      expectedValue
+    );
+  }
+
   static async verifyElementTextEqualTo(
     targetElement,
     elementName,

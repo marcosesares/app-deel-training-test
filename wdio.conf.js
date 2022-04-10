@@ -63,22 +63,20 @@ export const config = {
       //
       browserName: "chrome",
       "goog:chromeOptions": {
-        args:
-          headless.toUpperCase() === "Y"
-            ? [
-                "--disable-web-security",
-                "--headless",
-                "--disable-dev-shm-usage",
-                "--no-sandbox",
-                "--window-size=1280,800",
-                "--headless",
-                "--disable-gpu",
-                "--acceptInsecureCerts",
-                "--disable-infobars",
-                "--ignore-certificate-errors",
-                "--disable-blink-features=BlockCredentialedSubresources",
-              ]
-            : [],
+        args: Object.assign(
+          [
+            "--disable-web-security",
+            "--disable-dev-shm-usage",
+            "--no-sandbox",
+            "--window-size=1280,800",
+            "--disable-gpu",
+            "--acceptInsecureCerts",
+            "--disable-infobars",
+            "--ignore-certificate-errors",
+            "--disable-blink-features=BlockCredentialedSubresources",
+          ],
+          Boolean(headless) ? ["--headless"] : ""
+        ),
       },
       acceptInsecureCerts: true,
       timeouts: { implicit: 10000, pageLoad: 20000, script: 30000 },
@@ -144,7 +142,6 @@ export const config = {
   // your test setup with almost no effort. Unlike plugins, they don't add new
   // commands. Instead, they hook themselves up into the test process.
   services: ["chromedriver", "geckodriver"],
-  headless: false,
   // Framework you want to run your specs with.
   // The following are supported: Mocha, Jasmine, and Cucumber
   // see also: https://webdriver.io/docs/frameworks
@@ -181,7 +178,7 @@ export const config = {
   mochaOpts: {
     ui: "bdd",
     timeout: 600000,
-    grep: process.env.npm_config_grep,
+    grep: process.env.GREP_CONFIG,
   },
   //
   // =====

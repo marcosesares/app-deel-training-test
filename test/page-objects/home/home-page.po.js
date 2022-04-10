@@ -14,6 +14,10 @@ class HomePage extends BasePagePo {
     return $(selectors.mobileHeaderButton);
   }
 
+  get userGreetings() {
+    return $(selectors.userGreetings);
+  }
+
   get userTagNameLabel() {
     return $(selectors.userTagNameLabel);
   }

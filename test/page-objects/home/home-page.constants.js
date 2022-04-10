@@ -7,6 +7,7 @@ export default class HomePageConstants {
       doneButton: "//button[div[span[normalize-space(text())='Done']]]",
       mobileHeaderButton:
         "//div[@class='flex mobile-header-content-container']/button",
+      userGreetings: "h1[data-qa='heading']",
     },
     labels: {
       userTagName: "User Name",
@@ -14,6 +15,7 @@ export default class HomePageConstants {
       acceptCookiesButton: "Accept All Cookies button",
       nextButton: "Next button",
       doneButton: "Done button",
+      userGreetings: "User greetings",
     },
   };
 }
