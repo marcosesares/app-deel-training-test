@@ -40,6 +40,10 @@ export class ValidationsHelper {
     return `Type the '${text}' on the '${name}'`;
   }
 
+  static getSetPasswordValueAction(name) {
+    return `Type the user password on the '${name}'`;
+  }
+
   static getDisplayedValidation(name) {
     return `'${name}' should be displayed`;
   }

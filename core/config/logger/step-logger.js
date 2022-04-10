@@ -40,12 +40,8 @@ export class StepLogger {
   }
 
   static commonLogger(operation, step, logStep = true) {
-    let caseIdLog = this.testCaseId ? ` - ${this.testCaseId}` : "";
+    let caseIdLog = this.testCaseId ? this.testCaseId : "";
     let message = `${caseIdLog} - *${operation}* - ${step}`;
-    if (this.testStart !== undefined) {
-      const passed = new Date().getTime() - this.testStart;
-      message = ` +${passed / 1000}s ${message}`;
-    }
     if (this.debug) {
       console.log(`${this.testCaseId || ""}${message}`);
     }

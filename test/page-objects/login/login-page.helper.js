@@ -19,7 +19,7 @@ class LoginPageHelper extends BasePageHelper {
   }
 
   async setTheUserPassword(userPassword) {
-    await ElementHelper.setValue(
+    await ElementHelper.setPasswordValue(
       LoginPage.passwordInput,
       labels.passwordInput,
       userPassword

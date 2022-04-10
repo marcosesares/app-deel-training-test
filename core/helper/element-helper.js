@@ -90,4 +90,11 @@ export class ElementHelper {
     await WaitHelper.waitForElementToBeDisplayed(targetElement);
     await targetElement.setValue(text);
   }
+
+  static async setPasswordValue(targetElement, elementName, text) {
+    let message = ValidationsHelper.getSetPasswordValueAction(elementName);
+    StepLogger.subStep(message);
+    await WaitHelper.waitForElementToBeDisplayed(targetElement);
+    await targetElement.setValue(text);
+  }
 }

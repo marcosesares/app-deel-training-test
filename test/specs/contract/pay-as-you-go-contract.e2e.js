@@ -10,6 +10,7 @@ const { getContract } = Contract;
 describe("Create Pay As You Go Contracts on Deel training application", () => {
   context("Pay As You Go Contract", async () => {
     beforeEach("should login with valid credentials", async () => {
+      StepLogger.setCaseId("TC003");
       StepLogger.stepId(1);
       StepLogger.feature("Pay As You Go");
       StepLogger.step("Open deel login page");
@@ -37,6 +38,7 @@ describe("Create Pay As You Go Contracts on Deel training application", () => {
       const contract = getContract();
       const colorAttribute = "primary";
 
+      StepLogger.setCaseId("TC003");
       StepLogger.stepId(1);
       StepLogger.step("Click on the 'Create A Contract' link");
       await ContractPageHelper.clickCreateContractLink();

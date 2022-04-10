@@ -10,6 +10,7 @@ const { getContract } = Contract;
 describe("Create Fixed Rate Contracts on Deel training application", () => {
   context("Fixed Rate Contract", async () => {
     beforeEach("should login with valid credentials", async () => {
+      StepLogger.setCaseId("TC002");
       StepLogger.stepId(1);
       StepLogger.feature("Fixed Rate");
       StepLogger.step("Open deel login page");
@@ -37,6 +38,7 @@ describe("Create Fixed Rate Contracts on Deel training application", () => {
       const contract = getContract();
       const colorAttribute = "primary";
 
+      StepLogger.setCaseId("TC002");
       StepLogger.stepId(1);
       StepLogger.step("Click on the 'Create A Contract' link");
       await ContractPageHelper.clickCreateContractLink();

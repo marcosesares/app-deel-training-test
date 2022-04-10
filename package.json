@@ -21,8 +21,6 @@
     },
     "scripts": {
         "wdio": "npx wdio wdio.conf.js",
-        "qa:wdio": "npx wdio core/config/wdio.qa.conf.js > report.txt",
-        "uat:wdio": "npx wdio core/config/wdio.uat.conf.js",
         "dev:wdio": "npx wdio core/config/wdio.dev.conf.js"
     }
 }

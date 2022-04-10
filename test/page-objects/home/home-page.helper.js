@@ -43,7 +43,7 @@ class HomePageHelper extends BasePageHelper {
     await ElementHelper.actionClickIfDisplayed(
       HomePage.acceptAllCookiesButton,
       labels.acceptCookiesButton,
-      TIMEOUTS.s
+      TIMEOUTS.m
     );
   }
 

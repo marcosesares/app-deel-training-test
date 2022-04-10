@@ -1,18 +1,15 @@
 import winston from "winston";
 
-const consoleFormat = winston.format.printf(({ level, message }) => {
-  const logLevel = winston.format
-    .colorize()
-    .colorize(level, `${level.toUpperCase()}`);
-  return `[${logLevel}]: ${message}`;
-});
+const consoleFormat = winston.format.combine(
+  winston.format.printf((debug) => `${debug.message}`)
+);
 
 let logger = winston.createLogger({
+  level: process.env.LOGGER_LEVEL,
   transports: [
     new winston.transports.Console({
-      level: process.env.LOG_LEVEL,
       handleExceptions: true,
-      format: winston.format.combine(winston.format.timestamp(), consoleFormat),
+      format: consoleFormat,
     }),
   ],
 });
