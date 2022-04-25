@@ -164,6 +164,7 @@ export const config = {
       {
         outputDir: "allure-results",
         disableWebdriverStepsReporting: true,
+        disableWebdriverScreenshotsReporting: true,
       },
     ],
   ],
@@ -249,21 +250,24 @@ export const config = {
    * Function to be executed before a test (in Mocha/Jasmine) starts.
    */
   beforeTest: async function (test, context) {
-    const testId = test.title.split(/:/)[0];
-    StepLogger.setCaseId(testId);
+    StepLogger.addStory(test.parent);
   },
   /**
    * Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
    * beforeEach in Mocha)
    */
-  // beforeHook: function (test, context) {
-  // },
+  // beforeHook: function (test, context) {},
   /**
    * Hook that gets executed _after_ a hook within the suite starts (e.g. runs after calling
    * afterEach in Mocha)
    */
-  // afterHook: function (test, context, { error, result, duration, passed, retries }) {
-  // },
+  afterHook: function (
+    test,
+    context,
+    { error, result, duration, passed, retries }
+  ) {
+    allure.endStep(passed ? "passed" : "failed");
+  },
   /**
    * Function to be executed after a test (in Mocha/Jasmine only)
    * @param {Object}  test             test object
@@ -274,20 +278,11 @@ export const config = {
    * @param {Boolean} result.passed    true if test has passed, otherwise false
    * @param {Object}  result.retries   informations to spec related retries, e.g. `{ attempts: 0, limit: 0 }`
    */
-  afterTest: async function (
-    test,
-    context,
-    { error, result, duration, passed, retries }
-  ) {
-    const testId = test.title.split(/:/)[0];
-    if (!passed) {
-      await browser.takeScreenshot();
-    }
-    StepLogger.setCaseId(testId);
-    allure.addTestId(testId);
-    allure.addStory(test.parent);
-    allure.addEnvironment("Environement: ", browser.config.environment);
-  },
+  // afterTest: async function (
+  //   test,
+  //   context,
+  //   { error, result, duration, passed, retries }
+  // ) {},
 
   /**
    * Hook that gets executed after the suite has ended

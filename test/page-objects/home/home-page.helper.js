@@ -35,7 +35,7 @@ class HomePageHelper extends BasePageHelper {
     await ElementHelper.actionClickIfDisplayed(
       HomePage.mobileHeaderButton,
       labels.sideBurguerMenu,
-      DEFAULT_TIMEOUT
+      TIMEOUTS.s
     );
   }
 

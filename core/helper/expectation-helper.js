@@ -1,5 +1,6 @@
 import { StepLogger } from "../config/logger/step-logger";
 import { ValidationsHelper } from "./validations-helper";
+import { WaitHelper } from "./wait-helper";
 
 export class ExpectationHelper {
   static async verifyElementTextContains(
@@ -12,7 +13,15 @@ export class ExpectationHelper {
       expectedValue
     );
     StepLogger.subVerification(message);
-    await expect(targetElement).toHaveTextContaining(expectedValue);
+    try {
+      await expect(targetElement).toHaveTextContaining(expectedValue);
+    } catch (error) {
+      await StepLogger.logError(
+        "EXPECT",
+        `Could not achieve expectation [${message}].`
+      );
+      throw error;
+    }
   }
 
   static async verifyElementTextEqualTo(
@@ -25,7 +34,15 @@ export class ExpectationHelper {
       expectedValue
     );
     StepLogger.subVerification(message);
-    await expect(targetElement).toHaveText(expectedValue);
+    try {
+      await expect(targetElement).toHaveText(expectedValue);
+    } catch (error) {
+      await StepLogger.logError(
+        "EXPECT",
+        `Could not achieve expectation [${message}].`
+      );
+      throw error;
+    }
   }
 
   static async verifyElementAttributeValue(
@@ -40,15 +57,37 @@ export class ExpectationHelper {
       expectedValue
     );
     StepLogger.subVerification(message);
-    await expect(targetElement).toHaveAttribute(
-      elementAttribute,
-      expectedValue
-    );
+    try {
+      await WaitHelper.waitForElementAttributeValue(
+        targetElement,
+        elementAttribute,
+        expectedValue,
+        message
+      );
+      await expect(targetElement).toHaveAttribute(
+        elementAttribute,
+        expectedValue
+      );
+    } catch (error) {
+      await StepLogger.logError(
+        "EXPECT",
+        `Could not achieve expectation [${message}].`
+      );
+      throw error;
+    }
   }
 
   static async verifyElementDisplayedStatus(targetElement, elementName) {
     const message = ValidationsHelper.getDisplayedValidation(elementName);
     StepLogger.subVerification(message);
-    await expect(targetElement).toBeDisplayed();
+    try {
+      await expect(targetElement).toBeDisplayed();
+    } catch (error) {
+      await StepLogger.logError(
+        "EXPECT",
+        `Could not achieve expectation [${message}].`
+      );
+      throw error;
+    }
   }
 }

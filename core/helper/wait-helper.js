@@ -1,4 +1,4 @@
-import { VerboseLogger } from "../config/logger/verbose-logger";
+import { StepLogger } from "../config/logger/step-logger";
 import { CoreConstants } from "./../core-constants";
 
 const { DEFAULT_TIMEOUT, TIMEOUTS } = CoreConstants;
@@ -12,6 +12,50 @@ export class WaitHelper {
     await browser.pause(TIMEOUTS.tenMinutes);
   }
 
+  static async waitForBrowserUrl(
+    browserUrl,
+    message = "browser should have url",
+    timeout = DEFAULT_TIMEOUT
+  ) {
+    try {
+      await browser.waitUntil(
+        async function () {
+          return (await browser.getUrl()) === browserUrl;
+        },
+        { timeout, message }
+      );
+    } catch (error) {
+      await StepLogger.logError(
+        "WAIT",
+        `Waiting ${timeout}ms for awaited state: ${message}.`
+      );
+      throw error;
+    }
+  }
+
+  static async waitForElementAttributeValue(
+    targetElement,
+    elementAttribute,
+    expectedValue,
+    message = "element should have attribute value",
+    timeout = DEFAULT_TIMEOUT
+  ) {
+    try {
+      await targetElement.waitUntil(
+        async function () {
+          return (await this.getAttribute(elementAttribute)) === expectedValue;
+        },
+        { timeout, message }
+      );
+    } catch (error) {
+      await StepLogger.logError(
+        "WAIT",
+        `Waiting ${timeout}ms for awaited state: ${message}.`
+      );
+      throw error;
+    }
+  }
+
   static async waitForElementToBeDisplayed(
     targetElement,
     timeout = DEFAULT_TIMEOUT,
@@ -20,7 +64,10 @@ export class WaitHelper {
     try {
       await targetElement.waitForDisplayed({ timeout, message });
     } catch (error) {
-      VerboseLogger.logSelector(timeout, message);
+      await StepLogger.logError(
+        "WAIT",
+        `Waiting ${timeout}ms for awaited state: ${message}.`
+      );
       throw error;
     }
   }
@@ -28,25 +75,26 @@ export class WaitHelper {
   static async waitForElementToBeClickable(
     targetElement,
     timeout = DEFAULT_TIMEOUT,
-    message = "Element not clickable"
+    message = "Element should be clickable"
   ) {
     try {
       await targetElement.waitForClickable({ timeout, message });
     } catch (error) {
-      VerboseLogger.logSelector(timeout, message);
+      await StepLogger.logError(
+        "WAIT",
+        `Waiting ${timeout}ms for awaited state: ${message}.`
+      );
       throw error;
     }
   }
 
   static async waitForElementOptionallyPresent(
     targetElement,
-    timeout = DEFAULT_TIMEOUT,
-    message = "Element should be displayed"
+    timeout = TIMEOUTS.s
   ) {
     try {
-      await targetElement.waitForDisplayed({ timeout, message });
+      await targetElement.waitForDisplayed({ timeout });
     } catch (error) {
-      VerboseLogger.logSelector(timeout, message);
       return false;
     }
     return true;

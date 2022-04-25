@@ -1,9 +1,9 @@
-import { StepLogger } from "../../../core/config/logger/step-logger";
 import BasePageHelper from "../base-page.helper";
 import LoginPage from "./login-page.po";
 import { ElementHelper } from "../../../core/helper/element-helper";
 import HomePageHelper from "../home/home-page.helper";
 import LoginPageConstants from "./login-page.constants";
+import { StepLogger } from "../../../core/config/logger/step-logger";
 
 const {
   attributes: { labels },
@@ -70,7 +70,7 @@ class LoginPageHelper extends BasePageHelper {
   }
 
   async open() {
-    return await super.open("login");
+    await super.open("login");
   }
 }
 

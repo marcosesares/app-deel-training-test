@@ -13,7 +13,7 @@ export class CoreConstants {
     xxxxxl: 400000,
     tenMinutes: 600000,
   };
-  static DEFAULT_TIMEOUT = CoreConstants.TIMEOUTS.xxl;
+  static DEFAULT_TIMEOUT = CoreConstants.TIMEOUTS.xl;
   static NUMBER_ONE = 1;
   static NUMBER_MINUS_ONE = -1;
   static NUMBER_THOUSAND = 1000;

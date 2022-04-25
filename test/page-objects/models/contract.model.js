@@ -1,7 +1,7 @@
 import faker from "@faker-js/faker";
 import { CoreConstants } from "../../../core/core-constants";
 import DateHelper from "../../../core/helper/date.helper";
-import NumberHelper from "../../../core/helper/Number.helper";
+import NumberHelper from "../../../core/helper/number.helper";
 import ContractPageConstants from "../contract/contract-page.constants";
 
 const {

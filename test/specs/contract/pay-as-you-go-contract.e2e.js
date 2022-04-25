@@ -10,16 +10,17 @@ const { getContract } = Contract;
 describe("Create Pay As You Go Contracts on Deel training application", () => {
   context("Pay As You Go Contract", async () => {
     beforeEach("should login with valid credentials", async () => {
-      StepLogger.setCaseId("TC003");
-      StepLogger.stepId(1);
       StepLogger.feature("Pay As You Go");
-      StepLogger.step("Open deel login page");
+      StepLogger.setCaseId("Pre-Condition");
+
+      StepLogger.stepId(1);
+      StepLogger.preCondition("Open deel login page");
       await LoginPageHelper.open();
       StepLogger.verification("Verify Login page is displayed");
       await LoginPageHelper.verifyLoginPage();
 
       StepLogger.stepId(2);
-      StepLogger.step("Login to deel app");
+      StepLogger.preCondition("Login to deel app");
       await LoginPageHelper.login(
         browser.config.userEmail,
         browser.config.userPassword
@@ -28,7 +29,7 @@ describe("Create Pay As You Go Contracts on Deel training application", () => {
       await HomePageHelper.verifyUserGreetingsDisplayedStatus();
 
       StepLogger.stepId(3);
-      StepLogger.step("Click the Mobile header button");
+      StepLogger.preCondition("Click the Mobile header button");
       await HomePageHelper.openSideMenu();
       StepLogger.verification("Verify User is logged in successfully");
       await HomePageHelper.verifyUserTagName(browser.config.userName);
@@ -68,7 +69,7 @@ describe("Create Pay As You Go Contracts on Deel training application", () => {
       StepLogger.stepId(5);
       StepLogger.step("Fill Define Dates form");
       await ContractPageHelper.fillDefineDatesForm(contract);
-      StepLogger.verification("Verify Payment Details page selected");
+      StepLogger.verification("Verify Benefits and Extras page selected");
       await ContractPageHelper.verifyBenefitsAndExtrasIconColor(colorAttribute);
 
       StepLogger.stepId(6);
